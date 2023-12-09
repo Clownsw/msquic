@@ -27,6 +27,7 @@
       <meta name="loc:themeAuto" content="Auto">
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
   </head>
 
   <script type="module" src="./../public/docfx.min.js"></script>
@@ -95,6 +96,10 @@ Currently tools only support Windows ETW.</p>
 <h3 id="windows">Windows</h3>
 <p>On Windows, MsQuic leverages manifested <a href="https://docs.microsoft.com/en-us/windows/win32/etw/event-tracing-portal">ETW</a> for its logging. All dependencies should be included with Windows; nothing additional should be required.</p>
 <h3 id="linux">Linux</h3>
+<h4 id="stdout">stdout</h4>
+<p>The easiest and quickest way to enable msquic logging is by compiling msquic with the following cmake arguments to direct the logs to standard output:</p>
+<pre><code class="lang-sh">cmake -D QUIC_ENABLE_LOGGING=ON -D QUIC_LOGGING_TYPE=stdout ...
+</code></pre>
 <h4 id="lttng">LTTng</h4>
 <p>On Linux, MsQuic leverages <a href="https://lttng.org/features/">LTTng</a> for its logging. Some dependencies, such as babeltrace, lttng, and clog2text_lttng are required. The simplest way to install all dependencies is by running <code>./scripts/prepare-machine.ps1 -ForTest</code>, but if you only want to collect the traces on the machine, the <strong>minimal dependencies</strong> are:</p>
 <pre><code>sudo apt-add-repository ppa:lttng/stable-2.13
@@ -318,7 +323,7 @@ QUIC_PERF_COUNTER_SEND_STATELESS_RETRY | Total stateless retry packets sent ever
 
     <div class="container-xxl search-results" id="search-results"></div>
 
-    <footer class="border-top">
+    <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
           <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
